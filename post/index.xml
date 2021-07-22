@@ -17,7 +17,8 @@
       <link>https://example.com/post/test/</link>
       <pubDate>Thu, 22 Jul 2021 15:41:29 +0000</pubDate>
       <guid>https://example.com/post/test/</guid>
-      <description>&lt;p&gt;Let $y_i = x_i^T \beta + \epsilon_i$.&lt;/p&gt;
+      <description>&lt;p&gt;Let $y_i = x_i^T \beta + \epsilon_i$,
+where $\epsilon_1, \ldots, \epsilon_n$ are independent.&lt;/p&gt;
 </description>
     </item>
     
