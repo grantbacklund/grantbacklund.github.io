@@ -7,7 +7,7 @@
     <description>Grant Backlund</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://example.com/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://example.com/media/icon_hu4a5b1b591c5ae08b60d2e1d27385e465_346_512x512_fill_lanczos_center_2.png</url>
       <title>Grant Backlund</title>
       <link>https://example.com/</link>
     </image>
@@ -29,6 +29,15 @@
 &lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Further event details, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;page elements&lt;/a&gt; such as image galleries, can be added to the body of this page.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://example.com/post/test/</link>
+      <pubDate>Thu, 22 Jul 2021 15:41:29 +0000</pubDate>
+      <guid>https://example.com/post/test/</guid>
+      <description>&lt;p&gt;Let $y_i = x_i^T \beta + \epsilon_i$.&lt;/p&gt;
 </description>
     </item>
     

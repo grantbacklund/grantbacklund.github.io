@@ -5,12 +5,21 @@
     <link>https://example.com/post/</link>
       <atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 22 Jul 2021 15:41:29 +0000</lastBuildDate>
     <image>
-      <url>https://example.com/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://example.com/media/icon_hu4a5b1b591c5ae08b60d2e1d27385e465_346_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://example.com/post/</link>
     </image>
+    
+    <item>
+      <title>Test</title>
+      <link>https://example.com/post/test/</link>
+      <pubDate>Thu, 22 Jul 2021 15:41:29 +0000</pubDate>
+      <guid>https://example.com/post/test/</guid>
+      <description>&lt;p&gt;Let $y_i = x_i^T \beta + \epsilon_i$.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Welcome to Wowchemy, the website builder for Hugo</title>
