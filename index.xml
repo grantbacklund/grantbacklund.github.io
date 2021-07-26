@@ -39,6 +39,8 @@
       <guid>https://example.com/post/test/</guid>
       <description>&lt;p&gt;Let $y_i = x_i^T \beta + \epsilon_i$,
 where $\epsilon_1, \ldots, \epsilon_n$ are independent.&lt;/p&gt;
+&lt;p&gt;Testing content editing through Github repository.&lt;/p&gt;
+&lt;p&gt;Let $$ g: \mathbb{R} \to \mathbb{R} ;.$$&lt;/p&gt;
 </description>
     </item>
     
