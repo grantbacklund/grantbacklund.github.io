@@ -37,7 +37,8 @@
       <link>https://example.com/post/test/</link>
       <pubDate>Thu, 22 Jul 2021 15:41:29 +0000</pubDate>
       <guid>https://example.com/post/test/</guid>
-      <description>&lt;p&gt;Consider the problem of estimating an NBA player&amp;rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players. The maximum likelihood estimate (MLE) of $theta_i$ is just $Y_i$. We explain how to improve upon the MLE in terms of both estimation accuracy and uncertainty quantification by considering two types of Bayesian estimators which utilize information from \textit{other} players to impose shrinkage towards a global mean.&lt;/p&gt;
+      <description>&lt;p&gt;Consider the problem of estimating an NBA player&amp;rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players. The maximum likelihood estimate (MLE) of $\theta_i$ is just $Y_i$. We explain how to improve upon the MLE in terms of both estimation accuracy and uncertainty quantification by considering two types of Bayesian estimators which utilize information from &lt;em&gt;other&lt;/em&gt; players to impose shrinkage towards a global mean.&lt;/p&gt;
+&lt;p&gt;Joint estimation of all players&#39; three point percentages boils down to the classical problem in statistics of estimation of the multivariate normal mean.&lt;/p&gt;
 </description>
     </item>
     
