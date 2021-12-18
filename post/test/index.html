@@ -795,7 +795,11 @@
 
     <div class="article-style">
       <p>Consider the problem of estimating an NBA player&rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players. The maximum likelihood estimate (MLE) of $\theta_i$ is just $Y_i$. We explain how to improve upon the MLE in terms of both estimation accuracy and uncertainty quantification by considering two types of Bayesian estimators which utilize information from <em>other</em> players to impose shrinkage towards a global mean.</p>
-<p>Joint estimation of all players' three point percentages boils down to the classical problem in statistics of estimation of the multivariate normal mean.</p>
+<p>Joint estimation of all players' three point percentages boils down to the classical problem in statistics of estimation of the multivariate normal mean. More formally, the setup is as follows.</p>
+<ol>
+<li>Conditional on $\theta_1, \ldots, \theta_N$, let $Y_1, \ldots, Y_N$ be independent with $Y_i \sim \hbox{N}(\theta_i, \sigma^2)$, $i = 1, \ldots, N$, $\sigma^2 &gt; 0$ being known. Without loss of generality, assume $\sigma^2 = 1$.</li>
+<li>The $\theta_i$s have independent $\hbox{N}(\mu_i, A)$ priors, $i = 1, \ldots, N$. Write $<strong>\theta</strong> = (\theta_1, \ldots, \theta_N)^T, <strong>Y</strong> = (Y_1, \ldots, Y_N)^T and <strong>y</strong> = (y_1, \ldots, y_N)^T$.</li>
+</ol>
 
     </div>
 
