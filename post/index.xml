@@ -21,8 +21,10 @@
 &lt;p&gt;Joint estimation of all players&#39; three point percentages boils down to the classical problem in statistics of estimation of the multivariate normal mean. More formally, the setup is as follows.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Conditional on $\theta_1, \ldots, \theta_N$, let $Y_1, \ldots, Y_N$ be independent with $Y_i \sim \hbox{N}(\theta_i, \sigma^2)$, $i = 1, \ldots, N$, $\sigma^2 &amp;gt; 0$ being known. Without loss of generality, assume $\sigma^2 = 1$.&lt;/li&gt;
-&lt;li&gt;The $\theta_i$s have independent $\hbox{N}(\mu_i, A)$ priors, $i = 1, \ldots, N$. Write $\mathbf{\theta} = (\theta_1, \ldots, \theta_N)^T, \mathbf{Y} = (Y_1, \ldots, Y_N)^T and \mathbf{y} = (y_1, \ldots, y_N)^T$.&lt;/li&gt;
+&lt;li&gt;The $\theta_i$s have independent $\hbox{N}(\mu_i, A)$ priors, $i = 1, \ldots, N$. Write $\theta = (\theta_1, \ldots, \theta_N)^T, Y = (Y_1, \ldots, Y_N)^T$ and $y = (y_1, \ldots, y_N)^T$.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;The posterior distribution of $\theta$ given $Y = y$ is then $\hbox{N}((1-B)y + B \mu, (1-B) I_N$, where $B = (A + 1)^{-1}$. Accordingly, the posterior mean (the usual Bayes estimate) of $\theta$ is given by $$E(\theta | Y = y) = (1-B)y + B \mu.$$&lt;/p&gt;
+&lt;p&gt;In an empirical Bayes (EB) or a hierarchical Bayes (HB) scenario, some or all of the prior parameters are unknown. In an EB setup, these parameters are estimated from the marginal distribution of $Y$ which in this case is $\hbox{N}(\mu, B^{-1} I_N)$. A HB procedure, on the other hand, models the uncertainty of the unknown prior parameters by assigning distributions to them. Such distributions are often called &lt;em&gt;hyperpriors&lt;/em&gt;.&lt;/p&gt;
 </description>
     </item>
     
