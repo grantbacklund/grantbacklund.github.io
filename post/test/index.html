@@ -805,12 +805,12 @@
 E(\theta | Y = y) = (1-B)y + B \mu. \label{eq1}
 \end{align}</p>
 <p>In an empirical Bayes (EB) or a hierarchical Bayes (HB) scenario, some or all of the prior parameters are unknown. In an EB setup, these parameters are estimated from the marginal distribution of $Y$ which in this case is $\hbox{N}(\mu, B^{-1} I_N)$. An HB procedure, on the other hand, models the uncertainty of the unknown prior parameters by assigning distributions to them. Such distributions are often called <em>hyperpriors</em>.</p>
-<p>For us, the most salient case is when $\mu_1 = \ldots = \mu_N = \mu$ (say), where both $\mu \in \mathbb{R}$ and $A &gt; 0$ are unknown. Marginally, $Y \sim \hbox{N}(\mu 1_N, B^{-1} I_N)$, with $B = (A + 1)^{-1}$. Hence, $\left( \bar{Y}, \sum_{i=1}^N(Y_i - \bar{Y})^2 \right)$ is complete sufficient, so that the UMVUEs of $\mu$ and $B$ are given respectively by $\bar{Y}$ and $(p - 3) / \sum_{i=1}^N(Y_i - \bar{Y})^2$. Substituting these estimators of $\mu$ and $B$ into (\ref{eq1}), the EB estimator of $\theta$ is given by
-\begin{align}
-\hat{\theta}_{\text{EB}} &amp;= \left( 1 - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \right) Y + \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \bar{Y} 1_N \<br>
+<p>For us, the most salient case is when $\mu_1 = \ldots = \mu_N = \mu$ (say), where both $\mu \in \mathbb{R}$ and $A &gt; 0$ are unknown. Marginally, $Y \sim \hbox{N}(\mu 1_N, B^{-1} I_N)$, with $B = (A + 1)^{-1}$. Hence, $\left( \bar{Y}, \sum_{i=1}^N(Y_i - \bar{Y})^2 \right)$ is complete sufficient, so that the UMVUEs of $\mu$ and $B$ are given respectively by $\bar{Y}$ and $(p - 3) / \sum_{i=1}^N(Y_i - \bar{Y})^2$. Substituting these estimators of $\mu$ and $B$ into \ref{eq1}, the EB estimator of $\theta$ is given by</p>
+<p>\begin{align}
+\hat{\theta}<em>{\text{EB}} &amp;= \left( 1 - \frac{p-3}{\sum</em>{i=1}^N(Y_i - \bar{Y})^2} \right) Y + \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \bar{Y} 1_N \<br>
 &amp;= Y - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2 (Y - \bar{Y} 1_N). \label{eq2}
-\end{align}
-This is a modification of the James-Stein estimator that was introduced by Lindley (1962). Whereas the original James-Stein estimator shrinks Y towards a specified point, the modified estimator in (\ref{eq2}) shrinks Y towards a hyperplan spanned by $1_N$. The estimator $\hat{\theta}_{\text{EB}}$ is known to dominate $Y$ for $N \ge 4$.</p>
+\end{align}</p>
+<p>This is a modification of the James-Stein estimator that was introduced by Lindley (1962). Whereas the original James-Stein estimator shrinks Y towards a specified point, the modified estimator in \ref{eq2} shrinks Y towards a hyperplane spanned by $1_N$. The estimator $\hat{\theta}_{\text{EB}}$ is known to dominate $Y$ for $N \ge 4$.</p>
 
     </div>
 
