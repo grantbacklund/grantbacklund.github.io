@@ -811,6 +811,7 @@ E(\theta | Y = y) = (1-B)y + B \mu. \label{eq1}
 &amp;= Y - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N). \label{eq2}
 \end{align}</p>
 <p>This is a modification of the James-Stein estimator that was introduced by Lindley (1962). Whereas the original James-Stein estimator shrinks Y towards a specified point, the modified estimator in (\ref{eq2}) shrinks Y towards a hyperplane spanned by $1_N$. The estimator $\hat{\theta}_{\text{EB}}$ is known to dominate $Y$ for $N \ge 4$.</p>
+<p>For the HB estimator of $\theta$, consider the model where (i) conditional on $\theta, \mu,$ and $A$, $Y \sim \hbox{N}(\theta, I_N)$; (ii) conditional on $\mu$ and $A$, $\theta \sim \hbox{N}(\mu 1_N, A 1_N)$; (iii) marginally $\mu$ and $A$ are independently distributed with the following improper priors: $\mu$ uniform on $(-\infty, \infty)$, and $A$ uniform on $(0, \infty)$.</p>
 
     </div>
 
