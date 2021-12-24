@@ -816,7 +816,20 @@ E(\theta | Y = y) = (1-B)y + B \mu. \label{eq1}
 &amp;f(y, \theta, A) \propto A^{-\frac{1}{2}(N-1)} \nonumber \\<br>
 &amp;\times \exp \left[ -\frac{1}{2} (\theta - D^{-1}y)^T D (\theta - D^{-1}y) - \frac{1}{2(A+1)} \sum_{i=1}^N (y_i - \bar{y})^2 \right], \nonumber
 \end{align} 
-where $D = A^{-1} [(A+1)I_N - N^{-1}J_N]$ with $J_N = 1_N 1_N^T$ and $D^{-1} = (1-B) I_N + B N^{-1} J_N$. Hence, conditional on $y$ and $A$, $\theta \sim \hbox{N}((1-B)y + B \bar{y} 1_N, (1-B)I_N + B N^{-1} J_N)$.</p>
+where $D = A^{-1} [(A+1)I_N - N^{-1}J_N]$ with $J_N = 1_N 1_N^T$ and $D^{-1} = (1-B) I_N + B N^{-1} J_N$. Hence, conditional on $y$ and $A$, $\theta \sim \hbox{N}((1-B)y + B \bar{y} 1_N, (1-B)I_N + B N^{-1} J_N)$. Also, integrating with respect to $\theta$, we obtain the joint pdf of $Y$ and $\theta$ given by $$f(y, A) \propto (A+1)^{-\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2(A+1)} \sum_{i=1}^N (y_i - \bar{y})^2 \right].$$ Since $B = (A+1)^{-1}$, it follows that the joint pdf of $Y$ and $B$ is given by
+\begin{align}
+f(x, B) &amp;\propto B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] B^{-2} \nonumber \\<br>
+&amp;= B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right]. \label{eq3}
+\end{align}
+It follows from (\ref{eq3}) that
+\begin{align}
+E(B|y) = &amp;\int_0^1 B^{\frac{1}{2}(p-3)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB \nonumber \\<br>
+&amp;\div \int_0^1 B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB;
+\end{align}
+\begin{align}
+E(B^2|y) = &amp;\int_0^1 B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB \nonumber \\<br>
+&amp;\div \int_0^1 B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB;
+\end{align}</p>
 
     </div>
 
