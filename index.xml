@@ -75,7 +75,7 @@ E(B^2|y) = &amp;amp;\int_0^1 B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \su
 \end{align}
 Finally, we can calculate $V(B|y)$ from (\ref{eq4}) and (\ref{eq5}) and use these to obtain $$\hat{\theta}_{\text{HB}} := E(\theta|y) = y - E(B|y)(y - \bar{y} 1_N);$$
 \begin{align}
-V(\theta|y) &amp;amp;= V[ E(\theta|B,y) | y ] + E[ V(\theta | B, y) | y ] \nonumber \\&lt;br&gt;
+&amp;amp;V(\theta|y) = V[ E(\theta|B,y) | y ] + E[ V(\theta | B, y) | y ] \nonumber \\&lt;br&gt;
 &amp;amp;= V[ y - B(y - \bar{y} 1_N)|y ] + E[ (1-B) 1_N + B N^{-1} J_N | y ] \nonumber \\&lt;br&gt;
 &amp;amp;= V(B|y)(y - \bar{y} 1_N)(y - \bar{y} 1_N)^T + I_N - E(B|y)(I_N - N^{-1} J_N).
 \end{align}&lt;/p&gt;
