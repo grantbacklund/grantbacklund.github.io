@@ -837,6 +837,7 @@ V(\theta|y) &amp;= V[ E(\theta|B,y) | y ] + E[ V(\theta | B, y) | y ] \nonumber 
 &amp;= V(B|y)(y - \bar{y} 1_N)(y - \bar{y} 1_N)^T \nonumber \\<br>
 &amp;+ I_N - E(B|y)(I_N - N^{-1} J_N). \nonumber
 \end{align}</p>
+<p>Morris (1981) suggests approximations to $E(B|y)$ and $E(B^2|y)$ involving replacement of $\int_0^1$ by $\int_0^{\infty}$ in both the numerator and denominator of (\ref{eq4}) and (\ref{eq5}). The resulting approximations turn out to be $E(B|y) \approx (p-3) / \sum_{i=1}^N (y_i - \bar{y})^2$ and $E(B^2|y) \approx (p-1)(p-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$, so that $V(B|y) \approx 2(p-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$. Note that with Morris&rsquo;s approximations, $$E(\theta|y) \approx Y - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N) = \hat{\theta}_{\text{EB}}. \label{eq6}$$</p>
 
     </div>
 
