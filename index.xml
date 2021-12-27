@@ -73,14 +73,24 @@ E(B|y) = &amp;amp;\int_0^1 B^{\frac{1}{2}(p-3)} \exp \left[ -\frac{1}{2} B \sum_
 E(B^2|y) = &amp;amp;\int_0^1 B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB \nonumber \\&lt;br&gt;
 &amp;amp;\div \int_0^1 B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB. \label{eq5}
 \end{align}
-Finally, we can calculate $V(B|y)$ from (\ref{eq4}) and (\ref{eq5}) and use these to obtain $$\hat{\theta}_{\text{HB}} := E(\theta|y) = y - E(B|y)(y - \bar{y} 1_N);$$
+Finally, we can calculate $V(B|y)$ from (\ref{eq4}) and (\ref{eq5}) and use these to obtain $$\hat{\theta}_{\text{HB}} := E(\theta|y) = y - E(B|y)(y - \bar{y} 1_N); \label{eq6}$$
 \begin{align}
 V(\theta|y) &amp;amp;= V[ E(\theta|B,y) | y ] + E[ V(\theta | B, y) | y ] \nonumber \\&lt;br&gt;
 &amp;amp;= V[ y - B(y - \bar{y} 1_N)|y ] + E[ (1-B) 1_N + B N^{-1} J_N | y ] \nonumber \\&lt;br&gt;
 &amp;amp;= V(B|y)(y - \bar{y} 1_N)(y - \bar{y} 1_N)^T \nonumber \\&lt;br&gt;
-&amp;amp;+ I_N - E(B|y)(I_N - N^{-1} J_N). \nonumber
+&amp;amp;+ I_N - E(B|y)(I_N - N^{-1} J_N). \label{eq7}
 \end{align}&lt;/p&gt;
-&lt;p&gt;Morris (1981) suggests approximations to $E(B|y)$ and $E(B^2|y)$ involving replacement of $\int_0^1$ by $\int_0^{\infty}$ in both the numerator and denominator of (\ref{eq4}) and (\ref{eq5}). The resulting approximations turn out to be $E(B|y) \approx (p-3) / \sum_{i=1}^N (y_i - \bar{y})^2$ and $E(B^2|y) \approx (p-1)(p-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$, so that $V(B|y) \approx 2(p-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$. Note that with Morris&amp;rsquo;s approximations, $$E(\theta|y) \approx Y - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N) = \hat{\theta}_{\text{EB}}. \label{eq6}$$&lt;/p&gt;
+&lt;p&gt;Morris (1981) suggests approximations to $E(B|y)$ and $E(B^2|y)$ involving replacement of $\int_0^1$ by $\int_0^{\infty}$ in both the numerator and denominator of (\ref{eq4}) and (\ref{eq5}). The resulting approximations turn out to be $E(B|y) \approx (N-3) / \sum_{i=1}^N (y_i - \bar{y})^2$ and $E(B^2|y) \approx (N-1)(N-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$, so that $V(B|y) \approx 2(N-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$. Note that with Morris&amp;rsquo;s approximations, 
+\begin{align}
+E(\theta|y) &amp;amp;\approx Y - \frac{N-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N) \nonumber \\&lt;br&gt;
+&amp;amp;= \hat{\theta}_{\text{EB}}, \label{eq8}
+\end{align}
+while
+\begin{align}
+V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2}(y - \bar{y} 1_N)(y - \bar{y} 1_N)^T \nonumber \\&lt;br&gt;
+&amp;amp;+ I_N - \frac{N-3}{\sum_{i=1}^N (y_i - \bar{y})^2}(I_N - N^{-1}J_N). \label{eq9}
+\end{align}&lt;/p&gt;
+&lt;p&gt;In the following, we will compare the performance of the hierarchical Bayes estimator (\ref{eq6}) and its associated standard error based on (\ref{eq7}) with that of Morris&amp;rsquo;s empirical Bayes estimator (\ref{eq8}) and its standard error based on (\ref{eq9}). Note that (\ref{eq6}) and (\ref{eq7}) must be evaluated with numerical integration.&lt;/p&gt;
 </description>
     </item>
     
