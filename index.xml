@@ -48,10 +48,10 @@
 E(\theta | Y = y) = (1-B)y + B \mu. \label{eq1}
 \end{align}&lt;/p&gt;
 &lt;p&gt;In an empirical Bayes (EB) or a hierarchical Bayes (HB) scenario, some or all of the prior parameters are unknown. In an EB setup, these parameters are estimated from the marginal distribution of $Y$ which in this case is $\hbox{N}(\mu, B^{-1} I_N)$. An HB procedure, on the other hand, models the uncertainty of the unknown prior parameters by assigning distributions to them. Such distributions are often called &lt;em&gt;hyperpriors&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;For us, the most salient case is when $\mu_1 = \ldots = \mu_N = \mu$ (say), where both $\mu \in \mathbb{R}$ and $A &amp;gt; 0$ are unknown. Marginally, $Y \sim \hbox{N}(\mu 1_N, B^{-1} I_N)$, with $B = (A + 1)^{-1}$. Hence, $\left( \bar{Y}, \sum_{i=1}^N(Y_i - \bar{Y})^2 \right)$ is complete sufficient, so that the UMVUEs of $\mu$ and $B$ are given respectively by $\bar{Y}$ and $(p - 3) / \sum_{i=1}^N(Y_i - \bar{Y})^2$. Substituting these estimators into (\ref{eq1}), the EB estimator of $\theta$ is given by
+&lt;p&gt;For us, the most salient case is when $\mu_1 = \ldots = \mu_N = \mu$ (say), where both $\mu \in \mathbb{R}$ and $A &amp;gt; 0$ are unknown. Marginally, $Y \sim \hbox{N}(\mu 1_N, B^{-1} I_N)$, with $B = (A + 1)^{-1}$. Hence, $\left( \bar{Y}, \sum_{i=1}^N(Y_i - \bar{Y})^2 \right)$ is complete sufficient, so that the UMVUEs of $\mu$ and $B$ are given respectively by $\bar{Y}$ and $(N - 3) / \sum_{i=1}^N(Y_i - \bar{Y})^2$. Substituting these estimators into (\ref{eq1}), the EB estimator of $\theta$ is given by
 \begin{align}
-\hat{\theta}_{\text{EB}} &amp;amp;= \left( 1 - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \right) Y + \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \bar{Y} 1_N \nonumber \\&lt;br&gt;
-&amp;amp;= Y - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N). \label{eq2}
+\hat{\theta}_{\text{EB}} &amp;amp;= \left( 1 - \frac{N-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \right) Y + \frac{N-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \bar{Y} 1_N \nonumber \\&lt;br&gt;
+&amp;amp;= Y - \frac{N-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N). \label{eq2}
 \end{align}&lt;/p&gt;
 &lt;p&gt;This is a modification of the James-Stein estimator that was introduced by Lindley (1962). Whereas the original James-Stein estimator shrinks Y towards a specified point, the modified estimator in (\ref{eq2}) shrinks Y towards a hyperplane spanned by $1_N$. The estimator $\hat{\theta}_{\text{EB}}$ is known to dominate $Y$ for $N \ge 4$.&lt;/p&gt;
 &lt;p&gt;For the HB estimator of $\theta$, consider the model where (i) conditional on $\theta, \mu,$ and $A$, $Y \sim \hbox{N}(\theta, I_N)$; (ii) conditional on $\mu$ and $A$, $\theta \sim \hbox{N}(\mu 1_N, A 1_N)$; (iii) marginally $\mu$ and $A$ are independently distributed with the following improper priors: $\mu \sim \text{Uniform}(-\infty, \infty)$, and $A \sim \text{Uniform}(0, \infty)$. Then the joint improper pdf of $Y, \theta, \mu,$ and $A$ is given by $$f(y, \theta, \mu, A) \propto \exp \left[ -\frac{1}{2} || y - \theta ||^2 \right] A^{- \frac{1}{2} N} \exp \left[ -\frac{1}{2A} || \theta - \mu 1_N ||^2 \right].$$ Now integrating with respect to $\mu$, it follows that the joint improper pdf of $Y, \theta,$ and $A$ is 
@@ -61,7 +61,7 @@ E(\theta | Y = y) = (1-B)y + B \mu. \label{eq1}
 \end{align} 
 where $D = A^{-1} [(A+1)I_N - N^{-1}J_N]$ with $J_N = 1_N 1_N^T$ and $D^{-1} = (1-B) I_N + B N^{-1} J_N$. Hence, conditional on $y$ and $A$, $\theta \sim \hbox{N}((1-B)y + B \bar{y} 1_N, (1-B)I_N + B N^{-1} J_N)$. Also, integrating with respect to $\theta$, we obtain the joint pdf of $Y$ and $\theta$ given by $$f(y, A) \propto (A+1)^{-\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2(A+1)} \sum_{i=1}^N (y_i - \bar{y})^2 \right].$$ Since $B = (A+1)^{-1}$, it follows that the joint pdf of $Y$ and $B$ is given by
 \begin{align}
-f(x, B) &amp;amp;\propto B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] B^{-2} \nonumber \\&lt;br&gt;
+f(y, B) &amp;amp;\propto B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] B^{-2} \nonumber \\&lt;br&gt;
 &amp;amp;= B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right]. \label{eq3}
 \end{align}
 It follows from (\ref{eq3}) that
@@ -118,7 +118,7 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the &lt;em&gt;coverage&lt;/em&gt; statistic as follows. We construct individual 95% confidence intervals for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&amp;rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:&lt;/p&gt;
+&lt;p&gt;In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the &lt;em&gt;coverage&lt;/em&gt; statistic as follows. We construct individual 95% confidence intervals for each player using the 2019-2020 data and the corresponding variance estimate for each method. Next, we compute the proportion of intervals that contain the true value from the 2020-2021 data. It&amp;rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -141,7 +141,7 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Hence, the HB method is also best in terms of coverage for this season. The plot below summarizes the analysis for the 2020-2021 season, and is based on a random sample of 30 of the players considered. Point estimates and confidence intervals for each method are given, along with the actual shooting percentages from this season (the red Xs). The shrinkage property of the HB and EB (Morris) estimates relative to the MLE is evident. Furthermore, it&amp;rsquo;s clear that the EB intervals are too narrow and that the MLE intervals are too wide.
+&lt;p&gt;Hence, the HB method is also best in terms of coverage for this season. The plot below summarizes the analysis, and is based on a random sample of 30 of the players considered. Point estimates and confidence intervals for each method are given, along with the actual shooting percentages from the 2020-2021 season (the red Xs). The shrinkage property of the HB and EB (Morris) estimates relative to the MLE is evident. Furthermore, it&amp;rsquo;s clear that the EB intervals are too narrow and that the MLE intervals are too wide.
 
 
 
