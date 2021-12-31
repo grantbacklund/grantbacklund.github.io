@@ -1,0 +1,1289 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Grant Backlund" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Consider the problem of estimating an NBA player&rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://example.com/post/nba-3pp-modeling/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.870e6f163646cd8a2733286eb13ffb65.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu4a5b1b591c5ae08b60d2e1d27385e465_346_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu4a5b1b591c5ae08b60d2e1d27385e465_346_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://example.com/post/nba-3pp-modeling/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="Grant Backlund" />
+  <meta property="og:url" content="https://example.com/post/nba-3pp-modeling/" />
+  <meta property="og:title" content="Hierarchical and empirical Bayesian estimation of NBA three point percentages | Grant Backlund" />
+  <meta property="og:description" content="Consider the problem of estimating an NBA player&rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players." /><meta property="og:image" content="https://example.com/post/nba-3pp-modeling/featured.png" />
+    <meta property="twitter:image" content="https://example.com/post/nba-3pp-modeling/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-12-17T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-12-17T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/post/nba-3pp-modeling/"
+  },
+  "headline": "Hierarchical and empirical Bayesian estimation of NBA three point percentages",
+  
+  "image": [
+    "https://example.com/post/nba-3pp-modeling/featured.png"
+  ],
+  
+  "datePublished": "2021-12-17T00:00:00Z",
+  "dateModified": "2021-12-17T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Grant Backlund"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Grant Backlund",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/media/icon_hu4a5b1b591c5ae08b60d2e1d27385e465_346_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Consider the problem of estimating an NBA player\u0026rsquo;s three point field goal percentage $\\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \\ldots, N$ and $N$ is the total number of players."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Hierarchical and empirical Bayesian estimation of NBA three point percentages | Grant Backlund</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f8cc42ee2d4892928c9175e2d99c6503" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Grant Backlund</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Grant Backlund</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/uploads/resume.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Hierarchical and empirical Bayesian estimation of NBA three point percentages</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 17, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Consider the problem of estimating an NBA player&rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players. The maximum likelihood estimate (MLE) of $\theta_i$ is just $Y_i$. We explain how to improve upon the MLE in terms of both estimation accuracy and uncertainty quantification by considering two types of Bayesian estimators which utilize information from <em>other</em> players to impose shrinkage towards a global mean.</p>
+<p>Joint estimation of all players' three point percentages boils down to the classical problem in statistics of estimation of the multivariate normal mean. More formally, the setup is as follows.</p>
+<ol>
+<li>Conditional on $\theta_1, \ldots, \theta_N$, let $Y_1, \ldots, Y_N$ be independent with $Y_i \sim \hbox{N}(\theta_i, \sigma^2)$, $i = 1, \ldots, N$, $\sigma^2 &gt; 0$ being known. Without loss of generality, assume $\sigma^2 = 1$.</li>
+<li>The $\theta_i$s have independent $\hbox{N}(\mu_i, A)$ priors, $i = 1, \ldots, N$. Write $\theta = (\theta_1, \ldots, \theta_N)^T, \mu = (\mu_1, \ldots, \mu_N), Y = (Y_1, \ldots, Y_N)^T$ and $y = (y_1, \ldots, y_N)^T$.</li>
+</ol>
+<p>The posterior distribution of $\theta$ given $Y = y$ is then $\hbox{N}((1-B)y + B \mu, (1-B) I_N)$, where $B = (A + 1)^{-1}$. Accordingly, the posterior mean (the usual Bayes estimate) of $\theta$ is given by 
+\begin{align}
+E(\theta | Y = y) = (1-B)y + B \mu. \label{eq1}
+\end{align}</p>
+<p>In an empirical Bayes (EB) or a hierarchical Bayes (HB) scenario, some or all of the prior parameters are unknown. In an EB setup, these parameters are estimated from the marginal distribution of $Y$ which in this case is $\hbox{N}(\mu, B^{-1} I_N)$. An HB procedure, on the other hand, models the uncertainty of the unknown prior parameters by assigning distributions to them. Such distributions are often called <em>hyperpriors</em>.</p>
+<p>For us, the most salient case is when $\mu_1 = \ldots = \mu_N = \mu$ (say), where both $\mu \in \mathbb{R}$ and $A &gt; 0$ are unknown. Marginally, $Y \sim \hbox{N}(\mu 1_N, B^{-1} I_N)$, with $B = (A + 1)^{-1}$. Hence, $\left( \bar{Y}, \sum_{i=1}^N(Y_i - \bar{Y})^2 \right)$ is complete sufficient, so that the UMVUEs of $\mu$ and $B$ are given respectively by $\bar{Y}$ and $(p - 3) / \sum_{i=1}^N(Y_i - \bar{Y})^2$. Substituting these estimators into (\ref{eq1}), the EB estimator of $\theta$ is given by
+\begin{align}
+\hat{\theta}_{\text{EB}} &amp;= \left( 1 - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \right) Y + \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} \bar{Y} 1_N \nonumber \\<br>
+&amp;= Y - \frac{p-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N). \label{eq2}
+\end{align}</p>
+<p>This is a modification of the James-Stein estimator that was introduced by Lindley (1962). Whereas the original James-Stein estimator shrinks Y towards a specified point, the modified estimator in (\ref{eq2}) shrinks Y towards a hyperplane spanned by $1_N$. The estimator $\hat{\theta}_{\text{EB}}$ is known to dominate $Y$ for $N \ge 4$.</p>
+<p>For the HB estimator of $\theta$, consider the model where (i) conditional on $\theta, \mu,$ and $A$, $Y \sim \hbox{N}(\theta, I_N)$; (ii) conditional on $\mu$ and $A$, $\theta \sim \hbox{N}(\mu 1_N, A 1_N)$; (iii) marginally $\mu$ and $A$ are independently distributed with the following improper priors: $\mu \sim \text{Uniform}(-\infty, \infty)$, and $A \sim \text{Uniform}(0, \infty)$. Then the joint improper pdf of $Y, \theta, \mu,$ and $A$ is given by $$f(y, \theta, \mu, A) \propto \exp \left[ -\frac{1}{2} || y - \theta ||^2 \right] A^{- \frac{1}{2} N} \exp \left[ -\frac{1}{2A} || \theta - \mu 1_N ||^2 \right].$$ Now integrating with respect to $\mu$, it follows that the joint improper pdf of $Y, \theta,$ and $A$ is 
+\begin{align}
+&amp;f(y, \theta, A) \propto A^{-\frac{1}{2}(N-1)} \nonumber \\<br>
+&amp;\times \exp \left[ -\frac{1}{2} (\theta - D^{-1}y)^T D (\theta - D^{-1}y) - \frac{1}{2(A+1)} \sum_{i=1}^N (y_i - \bar{y})^2 \right], \nonumber
+\end{align} 
+where $D = A^{-1} [(A+1)I_N - N^{-1}J_N]$ with $J_N = 1_N 1_N^T$ and $D^{-1} = (1-B) I_N + B N^{-1} J_N$. Hence, conditional on $y$ and $A$, $\theta \sim \hbox{N}((1-B)y + B \bar{y} 1_N, (1-B)I_N + B N^{-1} J_N)$. Also, integrating with respect to $\theta$, we obtain the joint pdf of $Y$ and $\theta$ given by $$f(y, A) \propto (A+1)^{-\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2(A+1)} \sum_{i=1}^N (y_i - \bar{y})^2 \right].$$ Since $B = (A+1)^{-1}$, it follows that the joint pdf of $Y$ and $B$ is given by
+\begin{align}
+f(x, B) &amp;\propto B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] B^{-2} \nonumber \\<br>
+&amp;= B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right]. \label{eq3}
+\end{align}
+It follows from (\ref{eq3}) that
+\begin{align}
+E(B|y) = &amp;\int_0^1 B^{\frac{1}{2}(p-3)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB \nonumber \\<br>
+&amp;\div \int_0^1 B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB; \label{eq4}
+\end{align}
+\begin{align}
+E(B^2|y) = &amp;\int_0^1 B^{\frac{1}{2}(p-1)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB \nonumber \\<br>
+&amp;\div \int_0^1 B^{\frac{1}{2}(p-5)} \exp \left[ -\frac{1}{2} B \sum_{i=1}^N (y_i - \bar{y})^2 \right] dB. \label{eq5}
+\end{align}
+Finally, we can calculate $V(B|y)$ from (\ref{eq4}) and (\ref{eq5}) and use these to obtain 
+\begin{align}
+\hat{\theta}_{\text{HB}} := E(\theta|y) = y - E(B|y)(y - \bar{y} 1_N), \label{eq6}
+\end{align} and
+\begin{align}
+V(\theta|y) &amp;= V[ E(\theta|B,y) | y ] + E[ V(\theta | B, y) | y ] \nonumber \\<br>
+&amp;= V[ y - B(y - \bar{y} 1_N)|y ] \nonumber \\<br>
+&amp;+ E[ (1-B) 1_N + B N^{-1} J_N | y ] \nonumber \\<br>
+&amp;= V(B|y)(y - \bar{y} 1_N)(y - \bar{y} 1_N)^T \nonumber \\<br>
+&amp;+ I_N - E(B|y)(I_N - N^{-1} J_N). \label{eq7}
+\end{align}</p>
+<p>Morris (1981) suggests approximations to $E(B|y)$ and $E(B^2|y)$ involving replacement of $\int_0^1$ by $\int_0^{\infty}$ in both the numerator and denominator of (\ref{eq4}) and (\ref{eq5}). The resulting approximations turn out to be $E(B|y) \approx (N-3) / \sum_{i=1}^N (y_i - \bar{y})^2$ and $E(B^2|y) \approx (N-1)(N-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$, so that $V(B|y) \approx 2(N-3) / \left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2$. Note that with Morris&rsquo;s approximations, 
+\begin{align}
+E(\theta|y) &amp;\approx Y - \frac{N-3}{\sum_{i=1}^N(Y_i - \bar{Y})^2} (Y - \bar{Y} 1_N) \nonumber \\<br>
+&amp;= \hat{\theta}_{\text{EB}}, \label{eq8}
+\end{align}
+while
+\begin{align}
+V(\theta|y) \approx &amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2 \right]^2}(y - \bar{y} 1_N)(y - \bar{y} 1_N)^T \nonumber \\<br>
+&amp;+ I_N - \frac{N-3}{\sum_{i=1}^N (y_i - \bar{y})^2}(I_N - N^{-1}J_N). \label{eq9}
+\end{align}</p>
+<p>In the following, we will compare the performance of the hierarchical Bayes estimator (\ref{eq6}) and its associated standard error based on (\ref{eq7}) with that of Morris&rsquo;s empirical Bayes estimator (\ref{eq8}) and its standard error based on (\ref{eq9}). Note that (\ref{eq6}) and (\ref{eq7}) must be evaluated with numerical integration.</p>
+<p>First, consider estimating three point field goal percentages in the 2020-2021 season based on percentages from the 2019-2020 season. To make the estimates more reliable, we only consider players who attempted at least 200 three point field goals in both seasons. To quantify the estimation accuracy, the mean squared error (MSE) of each estimate is given in the following table.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>MSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MLE</td>
+<td>0.00163</td>
+</tr>
+<tr>
+<td>HB</td>
+<td>0.00122</td>
+</tr>
+<tr>
+<td>Morris</td>
+<td>0.00129</td>
+</tr>
+</tbody>
+</table>
+<p>In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the <em>coverage</em> statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MLE</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>HB</td>
+<td>0.936</td>
+</tr>
+<tr>
+<td>Morris</td>
+<td>0.682</td>
+</tr>
+</tbody>
+</table>
+<p>Hence, the HB method is also best in terms of coverage for this season. The plot below summarizes the analysis for the 2020-2021 season, and is based on a random sample of 30 of the players considered. Point estimates and confidence intervals for each method are given, along with the actual shooting percentages from this season (the red Xs). The shrinkage property of the HB and EB (Morris) estimates relative to the MLE is evident. Furthermore, it&rsquo;s clear that the EB intervals are too narrow and that the MLE intervals are too wide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="./intervals.png" alt="image info" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/post/nba-3pp-modeling/&amp;text=Hierarchical%20and%20empirical%20Bayesian%20estimation%20of%20NBA%20three%20point%20percentages" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/nba-3pp-modeling/&amp;t=Hierarchical%20and%20empirical%20Bayesian%20estimation%20of%20NBA%20three%20point%20percentages" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Hierarchical%20and%20empirical%20Bayesian%20estimation%20of%20NBA%20three%20point%20percentages&amp;body=https://example.com/post/nba-3pp-modeling/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/post/nba-3pp-modeling/&amp;title=Hierarchical%20and%20empirical%20Bayesian%20estimation%20of%20NBA%20three%20point%20percentages" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Hierarchical%20and%20empirical%20Bayesian%20estimation%20of%20NBA%20three%20point%20percentages%20https://example.com/post/nba-3pp-modeling/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://example.com/post/nba-3pp-modeling/&amp;title=Hierarchical%20and%20empirical%20Bayesian%20estimation%20of%20NBA%20three%20point%20percentages" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://example.com/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu16d8d91153cd5e833f6e4bf6b5ed094f_74669_270x270_fill_lanczos_center_2.png" alt="Grant Backlund"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://example.com/">Grant Backlund</a></h5>
+      <h6 class="card-subtitle">Data Scientist</h6>
+      <p class="card-text">My research interests include Markov chain Monte Carlo, Bayesian statistics, and time series analysis.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=4s4UDB8AAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/grantbacklund" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/grantbacklund" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true},
+jax: ["input/TeX","input/MathML","input/AsciiMath","output/CommonHTML"],
+extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js","AssistiveMML.js", "[Contrib]/a11y/accessibility-menu.js"],
+TeX: {
+extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+equationNumbers: {
+autoNumber: "AMS"
+}
+}
+});
+</script>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

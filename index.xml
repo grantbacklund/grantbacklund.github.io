@@ -34,9 +34,9 @@
     
     <item>
       <title>Hierarchical and empirical Bayesian estimation of NBA three point percentages</title>
-      <link>https://example.com/post/test/</link>
+      <link>https://example.com/post/nba-3pp-modeling/</link>
       <pubDate>Fri, 17 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>https://example.com/post/test/</guid>
+      <guid>https://example.com/post/nba-3pp-modeling/</guid>
       <description>&lt;p&gt;Consider the problem of estimating an NBA player&amp;rsquo;s three point field goal percentage $\theta_i$ for the current season based on his percentage $Y_i$ from last season, where $i = 1, \ldots, N$ and $N$ is the total number of players. The maximum likelihood estimate (MLE) of $\theta_i$ is just $Y_i$. We explain how to improve upon the MLE in terms of both estimation accuracy and uncertainty quantification by considering two types of Bayesian estimators which utilize information from &lt;em&gt;other&lt;/em&gt; players to impose shrinkage towards a global mean.&lt;/p&gt;
 &lt;p&gt;Joint estimation of all players&#39; three point percentages boils down to the classical problem in statistics of estimation of the multivariate normal mean. More formally, the setup is as follows.&lt;/p&gt;
 &lt;ol&gt;
@@ -141,7 +141,28 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Hence, the HB method is also best in terms of coverage for this season.&lt;/p&gt;
+&lt;p&gt;Hence, the HB method is also best in terms of coverage for this season. The plot below summarizes the analysis for the 2020-2021 season, and is based on a random sample of 30 of the players considered. Point estimates and confidence intervals for each method are given, along with the actual shooting percentages from this season (the red Xs). The shrinkage property of the HB and EB (Morris) estimates relative to the MLE is evident. Furthermore, it&amp;rsquo;s clear that the EB intervals are too narrow and that the MLE intervals are too wide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./intervals.png&#34; alt=&#34;image info&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
 </description>
     </item>
     
