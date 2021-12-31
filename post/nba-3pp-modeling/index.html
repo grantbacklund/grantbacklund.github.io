@@ -860,7 +860,7 @@ V(\theta|y) \approx &amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2 \ri
 </tr>
 </tbody>
 </table>
-<p>In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the <em>coverage</em> statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:</p>
+<p>In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the <em>coverage</em> statistic as follows. We construct individual 95% confidence intervals for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:</p>
 <table>
 <thead>
 <tr>
@@ -905,6 +905,50 @@ V(\theta|y) \approx &amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2 \ri
     <div class="w-100" ><img src="./intervals.png" alt="image info" loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
+<p>This analysis was repeated for each season from 2015-2021. Below, we display time series plots of the MSE and coverage statistics in each year.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="./mse.png" alt="image info" loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="./coverage.png" alt="image info" loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+It&rsquo;s clear that the Hierarchical Bayes method is best under both metrics and that this superiority persists over time.</p>
 
     </div>
 

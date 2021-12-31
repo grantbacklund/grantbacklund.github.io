@@ -118,7 +118,7 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the &lt;em&gt;coverage&lt;/em&gt; statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&amp;rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:&lt;/p&gt;
+&lt;p&gt;In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the &lt;em&gt;coverage&lt;/em&gt; statistic as follows. We construct individual 95% confidence intervals for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&amp;rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -163,6 +163,50 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
     &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./intervals.png&#34; alt=&#34;image info&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
+&lt;p&gt;This analysis was repeated for each season from 2015-2021. Below, we display time series plots of the MSE and coverage statistics in each year.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./mse.png&#34; alt=&#34;image info&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./coverage.png&#34; alt=&#34;image info&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+It&amp;rsquo;s clear that the Hierarchical Bayes method is best under both metrics and that this superiority persists over time.&lt;/p&gt;
 </description>
     </item>
     
