@@ -96,18 +96,17 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
 &lt;td&gt;Morris&lt;/td&gt;
 &lt;td&gt;0.00129&lt;/td&gt;
 &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the &lt;em&gt;coverage&lt;/em&gt; statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&amp;rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;td&gt;In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the &lt;em&gt;coverage&lt;/em&gt; statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&amp;rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;th&gt;Method&lt;/th&gt;
+&lt;th&gt;Coverage&lt;/th&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Method&lt;/td&gt;
-&lt;td&gt;Coverage&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/td&gt;
-&lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;MLE&lt;/td&gt;
 &lt;td&gt;1.00&lt;/td&gt;
@@ -120,12 +119,9 @@ V(\theta|y) \approx &amp;amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2
 &lt;td&gt;Morris&lt;/td&gt;
 &lt;td&gt;0.682&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Hence, the HB method is also best in terms of coverage for this season.&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;Hence, the HB method is also best in terms of coverage for this season.&lt;/p&gt;
 </description>
     </item>
     

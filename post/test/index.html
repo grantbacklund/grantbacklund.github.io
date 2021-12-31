@@ -873,18 +873,17 @@ V(\theta|y) \approx &amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2 \ri
 <td>Morris</td>
 <td>0.00129</td>
 </tr>
+</tbody>
+</table>
+<p>In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the <em>coverage</em> statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:</p>
+<table>
+<thead>
 <tr>
-<td>In this case, the hierarchical Bayes estimate achieves the lowest estimation error. To quantify uncertainty calibration, we define the <em>coverage</em> statistic as follows. We construct individual 95% confidence intervals (CIs) for each player using the 2019-2020 data and compute the proportion of intervals that contain the true value from the 2020-2021 data. It&rsquo;s desirable for the coverage statistic to be close to the nominal level of 95%. Higher coverage than the nominal level is indicative of intervals that are overly wide and uninformative, while lower coverage than the nominal level results in intervals which are overconfident and uncalibrated. In this example, the coverage statistics are given by:</td>
-<td></td>
+<th>Method</th>
+<th>Coverage</th>
 </tr>
-<tr>
-<td>Method</td>
-<td>Coverage</td>
-</tr>
-<tr>
-<td>&mdash;&mdash;&mdash;&ndash;</td>
-<td>&mdash;&mdash;&mdash;&ndash;</td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td>MLE</td>
 <td>1.00</td>
@@ -897,12 +896,9 @@ V(\theta|y) \approx &amp;\frac{2(N-3)}{\left[ \sum_{i=1}^N (y_i - \bar{y})^2 \ri
 <td>Morris</td>
 <td>0.682</td>
 </tr>
-<tr>
-<td>Hence, the HB method is also best in terms of coverage for this season.</td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<p>Hence, the HB method is also best in terms of coverage for this season.</p>
 
     </div>
 
